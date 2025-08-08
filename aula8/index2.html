@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede Los Bros</title>
+</head>
+<style>
+.num{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+.nom{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+.tip{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+.res{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+h2{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+h3{
+    display: inline;
+    background:black;
+    background-color: rgba(197, 12, 12, 0.493);
+    width: 100px;
+    border-radius: 30%;
+}
+</style>
+<body style="background: rgb(100, 36, 36); background-position: center; text-align: center;">
+    <h2>Cadastro de Cliente</h2>
+    <br><br><br>
+
+
+  
+    <label class="nom">Nome:</label>
+  
+  
+    <input type="text" id="nome" /><br/><br/>
+    
+    <label class="num">Número de pessoas:</label>
+  
+    <input type="number" id="pessoas" min="1" max="3" /><br/><br/>
+    
+    <label class="tip">Tipo de mesa:</label>
+  
+    <select id="tipoMesa">
+      <option value="">-- escolha --</option>
+      <option value="padrao">Padrão (R$ 50 por pessoa, até 4)</option>
+      <option value="vip">VIP (R$ 80 por pessoa, até 6)</option>
+      <option value="varanda">Varanda (R$ 100 por pessoa, até 8)</option>
+    </select>
+  
+    <br/><br/>
+    
+    <button onclick="calcular()">Reservar e Calcular</button>
+    
+    <h3>Resultados</h3>
+    <div class="res" id="resultado"></div>
+    
+    <script style="height: 100px; width: 100px;">
+      function calcular() {
+        var nome = document.getElementById("nome").value;
+        var numPessoas = parseInt(document.getElementById("pessoas").value);
+        var tipo = document.getElementById("tipoMesa").value;
+        
+        if (!nome || isNaN(numPessoas) || numPessoas < 1 || numPessoas > 3 || !tipo) {
+          document.getElementById("resultado").innerHTML = "Preencha corretamente todos os campos (até 3 pessoas).";
+          return;
+        }
+        
+        var precoPorPessoa;
+        if (tipo === "padrao") {
+          precoPorPessoa = 50;
+        } else if (tipo === "vip") {
+          precoPorPessoa = 80;
+        } else if (tipo === "varanda") {
+          precoPorPessoa = 100;
+        } else {
+          document.getElementById("resultado").innerHTML = "Tipo de mesa inválido.";
+          return;
+        }
+        
+        var valorTotal = precoPorPessoa * numPessoas;
+        
+        document.getElementById("resultado").innerHTML =
+          "Cliente: " + nome + "<br/>" +
+          "Número de pessoas: " + numPessoas + "<br/>" +
+          "Tipo de mesa: " + tipo + "<br/>" +
+          "Preço por pessoa: R$ " + precoPorPessoa + "<br/>" +
+          "<strong>Valor total (consumo mínimo): R$ " + valorTotal + "</strong>";
+      }
+    </script>
+</body>
+</html>
